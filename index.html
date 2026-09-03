@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蔡琳 · AI 作品集</title>
+<meta name="description" content="蔡琳的 AI 作品集——把想法做成能用的东西：懂面鹅、可比公司 Skill、简历库助手、清理磁盘。">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#F3EFE6;
+    --paper-2:#EBE5D7;
+    --ink:#1A1D21;
+    --graphite:#3A3F45;
+    --muted:#7C7666;
+    --accent:#E25C33;
+    --accent-soft:#F4DED2;
+    --teal:#2F6F6A;
+    --teal-soft:#D9E4E0;
+    --sand:#C9BFA8;
+    --line:rgba(26,29,33,.14);
+    --serif:"Noto Serif SC",Georgia,"Songti SC","SimSun",serif;
+    --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#fff}
+
+  /* ===== 通用容器 ===== */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-size:13px;letter-spacing:.24em;font-weight:500;color:var(--accent);
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--accent)}
+  .section-title{
+    font-family:var(--serif);font-weight:700;font-size:clamp(30px,4vw,44px);
+    line-height:1.2;letter-spacing:.01em;margin-top:18px;
+  }
+  .section-sub{color:var(--graphite);max-width:640px;margin-top:16px;font-size:16px;font-weight:300}
+
+  /* ===== 导航 ===== */
+  header.site-nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,239,230,.86);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .brand-mark{
+    width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);
+    display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:14px;
+    background:var(--paper-2);
+  }
+  .brand-name{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.02em}
+  .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
+  .nav-links a{
+    display:inline-flex;align-items:center;min-height:44px;padding:0 16px;
+    text-decoration:none;color:var(--graphite);font-size:14px;font-weight:500;
+    border-radius:8px;transition:color .2s,background .2s;
+  }
+  .nav-links a:hover{color:var(--ink);background:var(--paper-2)}
+  .nav-links a.cta{color:#fff;background:var(--ink)}
+  .nav-links a.cta:hover{background:var(--accent);color:#fff}
+
+  /* ===== Hero ===== */
+  .hero{padding:96px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .hero h1{
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(40px,6vw,72px);line-height:1.08;letter-spacing:.005em;
+  }
+  .hero h1 .hl{color:var(--accent)}
+  .hero-stats{display:flex;gap:36px;margin-top:38px;flex-wrap:wrap}
+  .stat .num{font-family:var(--serif);font-weight:700;font-size:34px;line-height:1}
+  .stat .lbl{font-size:12px;letter-spacing:.14em;color:var(--muted);margin-top:8px;text-transform:uppercase}
+  .hero-cta{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    min-height:48px;padding:0 26px;border-radius:999px;
+    font-family:var(--sans);font-size:15px;font-weight:500;text-decoration:none;
+    border:1px solid var(--ink);cursor:pointer;transition:all .22s;
+  }
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--paper-2)}
+  .hero-art{position:relative}
+  .hero-art img{
+    width:100%;border-radius:22px;display:block;
+    border:1px solid var(--line);
+    box-shadow:0 30px 60px -30px rgba(26,29,33,.35);
+  }
+  .hero-art .cap{
+    position:absolute;left:18px;bottom:18px;
+    background:rgba(243,239,230,.92);backdrop-filter:blur(6px);
+    border:1px solid var(--line);border-radius:999px;
+    padding:8px 16px;font-size:12px;letter-spacing:.08em;color:var(--graphite);
+  }
+
+  /* ===== 作品区 ===== */
+  #works{padding:104px 0 24px}
+  .works-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:56px}
+  .work-card{
+    display:flex;flex-direction:column;
+    background:var(--paper-2);
+    border:1px solid var(--line);border-radius:20px;
+    overflow:hidden;position:relative;
+    transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s;
+  }
+  .work-card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(26,29,33,.4)}
+  .work-cover{position:relative;aspect-ratio:4/3;overflow:hidden}
+  .work-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+  .work-card:hover .work-cover img{transform:scale(1.045)}
+
+  /* ===== 未完待续占位卡 ===== */
+  .tbc-cover{display:grid;place-items:center;background:repeating-linear-gradient(45deg,#faf6ec 0 13px,#f2ebdc 13px 26px)}
+  .work-cover .tbc-img{max-width:56%;width:auto;height:auto;object-fit:contain;display:block;margin:0 auto}
+
+  /* ===== 相册轮播（懂面鹅，淡入淡出） ===== */
+  .carousel{position:relative;width:100%;height:100%}
+  .carousel-track{position:relative;height:100%}
+  .carousel-slide{
+    position:absolute;inset:0;display:grid;place-items:center;background:var(--paper-2);
+    opacity:0;pointer-events:none;transition:opacity .8s ease;
+  }
+  .carousel-slide.active{opacity:1;pointer-events:auto;z-index:1}
+  .carousel-slide img{width:100%;height:100%;object-fit:contain;display:block}
+  .carousel-slide.is-tall img{object-fit:contain;width:auto;height:auto;max-width:88%;max-height:86%}
+  .work-card:hover .carousel-slide img{transform:none}
+  .carousel-btn{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--line);background:rgba(243,239,230,.9);
+    color:var(--ink);cursor:pointer;display:grid;place-items:center;
+    transition:background .2s,color .2s;
+  }
+  .carousel-btn:hover{background:var(--ink);color:var(--paper)}
+  .carousel-btn.prev{left:12px}
+  .carousel-btn.next{right:12px}
+  .carousel-btn svg{width:18px;height:18px}
+  .carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:6px}
+  .carousel-dots button{
+    width:8px;height:8px;border-radius:50%;border:none;padding:0;
+    background:rgba(26,29,33,.3);cursor:pointer;transition:all .25s;
+  }
+  .carousel-dots button.active{background:var(--accent);width:22px;border-radius:999px}
+  .carousel-count{
+    position:absolute;top:12px;right:12px;z-index:3;
+    font-size:11.5px;font-weight:500;color:var(--graphite);
+    background:rgba(243,239,230,.85);border:1px solid var(--line);
+    border-radius:999px;padding:3px 10px;letter-spacing:.05em;
+  }
+  .work-no{
+    position:absolute;top:16px;left:16px;z-index:2;
+    font-family:var(--serif);font-weight:700;font-size:15px;color:#fff;
+    background:var(--ink);border-radius:999px;padding:5px 14px;letter-spacing:.05em;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .work-no .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .work-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+  .work-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .tag{
+    font-size:12px;font-weight:500;letter-spacing:.04em;
+    padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--graphite);
+  }
+  .tag.t-accent{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+  .tag.t-teal{color:var(--teal);border-color:var(--teal);background:var(--teal-soft)}
+  .work-title{font-family:var(--serif);font-weight:700;font-size:24px;line-height:1.3}
+  .work-desc{color:var(--graphite);font-size:14.5px;font-weight:300;margin-top:10px}
+
+  /* ===== 关于 ===== */
+  #about{padding:104px 0 0}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:48px}
+  .about-card{
+    background:var(--ink);color:var(--paper);
+    border-radius:20px;padding:40px 38px;
+  }
+  .about-card .quote{
+    font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.5;
+  }
+  .about-skills h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:16px}
+  .skill-list{display:flex;flex-wrap:wrap;gap:10px}
+  .skill-list span{
+    border:1px solid var(--line);border-radius:999px;
+    padding:8px 16px;font-size:13.5px;color:var(--graphite);background:var(--paper-2);
+  }
+
+  /* ===== Footer ===== */
+  footer{border-top:1px solid var(--line);margin-top:100px}
+  .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:34px 0;flex-wrap:wrap}
+  .foot-inner p{font-size:13px;color:var(--muted)}
+  .foot-links{display:flex;gap:6px}
+  .foot-links a{
+    display:inline-flex;align-items:center;min-height:44px;padding:0 14px;
+    color:var(--graphite);text-decoration:none;font-size:13px;border-radius:8px;
+  }
+  .foot-links a:hover{color:var(--ink);background:var(--paper-2)}
+
+  /* ===== 入场动画（仅在 JS 可用时启用，内容默认可见） ===== */
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .js .reveal.in{opacity:1;transform:none}
+  .js .reveal[data-delay="1"]{transition-delay:.08s}
+  .js .reveal[data-delay="2"]{transition-delay:.16s}
+  .js .reveal[data-delay="3"]{transition-delay:.24s}
+  @media (prefers-reduced-motion:reduce){
+    .js .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .work-card:hover{transform:none}
+    .work-card:hover .work-cover img{transform:none}
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .hero{padding:64px 0 20px}
+    .works-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px}
+    .nav-links a{padding:0 10px}
+    .hero-stats{gap:24px}
+    .banner figcaption{padding:26px 20px 18px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <span class="brand-mark" style="font-size:19px">🌰</span>
+      <span class="brand-name">蔡琳 · AI 作品集</span>
+    </a>
+    <nav aria-label="主导航">
+      <ul class="nav-links">
+        <li><a href="#about">关于</a></li>
+        <li><a class="cta" href="#works">看作品</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Portfolio · 2026</p>
+        <h1 style="margin-top:20px">把想法做成<br><span class="hl">能用的东西</span></h1>
+        <div class="hero-stats">
+          <div class="stat"><div class="num">4</div><div class="lbl">件作品</div></div>
+          <div class="stat"><div class="num">1</div><div class="lbl">已上线 Demo</div></div>
+          <div class="stat"><div class="num">2</div><div class="lbl">可直接使用</div></div>
+          <div class="stat"><div class="num">1</div><div class="lbl">待完善</div></div>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#works">看看作品
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#about">关于我</a>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <img src="https://aka.doubaocdn.com/s/Eo8CUrsXgX" alt="AI 造物者工作台插画">
+        <span class="cap">我的 AI 工作台</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 作品区 ===== -->
+  <section id="works">
+    <div class="wrap">
+      <div class="works-head">
+        <div>
+          <p class="eyebrow">My Works</p>
+        </div>
+      </div>
+
+      <div class="works-grid">
+
+        <!-- 作品 01 可比公司 Skill -->
+        <article class="work-card reveal">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.01</span>
+            <div class="carousel" data-carousel>
+              <span class="carousel-count"><span data-cur>1</span>/7</span>
+              <div class="carousel-track" data-track>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/XEHtvTeVK3" alt="可比公司 Skill 封面插画"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/Ov0KQyGuDB" alt="可比公司 估值短报告摘要与SOTP截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/ULzgHgEDud" alt="可比公司 可比公司概览截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/NoBSW8OpUe" alt="可比公司 可比公司估值表截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/nXwTvDXhi5" alt="可比公司 估值方法与结论截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/kNQTjuWm7U" alt="可比公司 Excel 可比法估值分析截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/2OcM4UnZP3" alt="可比公司 Excel 估值计算工作表截图"></div>
+              </div>
+              <button class="carousel-btn prev" data-prev aria-label="上一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="carousel-btn next" data-next aria-label="下一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="carousel-dots" data-dots></div>
+            </div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-teal">金融分析</span>
+            </div>
+            <h3 class="work-title">可比公司 Skill · Wind 估值</h3>
+            <p class="work-desc">你是不是也好奇过 "这家公司到底值多少钱、现在买会不会买贵了"，但一看那些估值报告就头大？别担心，这个工具就是来救你的！你只要告诉我 "想看哪家公司"，剩下的交给它。它会自动帮你翻遍整个市场，用专业人士的估值套路算出一个合理的价格区间，还贴心地告诉你为什么这么算、拿谁做对比、数据是哪来的。整个过程你只需要回答几个傻瓜式问题，最后拿到手的是一份一眼能看懂的结论报告和一张可以自己动手核对的表。就算你是金融小白，也能轻轻松松得到专业分析师级别的估值答案！</p>
+          </div>
+        </article>
+
+        <!-- 作品 02 懂面鹅 -->
+        <article class="work-card reveal" data-delay="1">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.02</span>
+            <div class="carousel" data-carousel>
+              <span class="carousel-count"><span data-cur>1</span>/6</span>
+              <div class="carousel-track" data-track>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/XCJGYqbjrG" alt="懂面鹅 封面插画"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/UjgKAoO2hh" alt="懂面鹅 首页截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/bm2vrUVNQG" alt="懂面鹅 黑箱拆解室截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/8bV0yX9VeG" alt="懂面鹅 AI 实测截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/LF9cwUB7zt" alt="懂面鹅 面试评分报告截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/srJZLsdccD" alt="懂面鹅 干货手册截图"></div>
+              </div>
+              <button class="carousel-btn prev" data-prev aria-label="上一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="carousel-btn next" data-next aria-label="下一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="carousel-dots" data-dots></div>
+            </div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-accent">AI demo</span>
+              <span class="tag">交互体验</span>
+              <span class="tag">已上线</span>
+            </div>
+            <h3 class="work-title">懂面鹅 · AI 面试解惑官</h3>
+            <p class="work-desc">AI 面试前最让你心里没底的，是不是压根不知道对面那个 AI 面试官在想什么，它按什么标准打分？会不会看走眼？这种对算法的不透明感和失控感，才是焦虑真正的源头。没关系，你有懂面鹅，你的 AI 面试解惑官！它不只是模拟面试官评估你的回答，更是陪你把 AI 评估背后的逻辑一层层拆开看明白。它会从你最真实的担忧出发，用 AI 生成专属于你的黑箱议题，再带你一步步走完“猜测 → 辩论 → 实测 → 评分 → 拆解 → 改写 → 个性化定制反馈”的完整链路，让你在亲身体验里亲眼看见 AI 到底是怎么识别你的结构、行动、结果和表达信号的。当黑箱被点亮，焦虑落地，剩下的，是对这场 AI 面试的掌控感！</p>
+          </div>
+        </article>
+
+        <!-- 作品 03 简历库助手 -->
+        <article class="work-card reveal">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.03</span>
+            <div class="carousel" data-carousel>
+              <span class="carousel-count"><span data-cur>1</span>/7</span>
+              <div class="carousel-track" data-track>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/FRGWPs9g3n" alt="简历库助手 封面插画"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/Y4DCpcINQi" alt="简历库助手 导入简历截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/m28jxuALYx" alt="简历库助手 简历内容库截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/se1AZKFr3k" alt="简历库助手 AI 润色截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/I60KmOGiE5" alt="简历库助手 AI 写作截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/LB4A2KjcfV" alt="简历库助手 插件一键填入截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/X6NV6bcX1m" alt="简历库助手 浏览器插件侧边栏截图"></div>
+              </div>
+              <button class="carousel-btn prev" data-prev aria-label="上一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="carousel-btn next" data-next aria-label="下一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="carousel-dots" data-dots></div>
+            </div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-accent">效率工具</span>
+            </div>
+            <h3 class="work-title">简历库助手</h3>
+            <p class="work-desc">投简历最烦的，是不是每个招聘网站的表单都不一样，一份简历改来改去，投十个方向就要手动填十遍？更别说一份简历打天下，常常石沉大海。别怕，简历库助手帮到你！把改简历和填简历两件磨人事一口气解决——上传 PDF 或 Word，AI 立刻解析成结构化简历库；按不同方向维护多张简历卡片，AI 按 STAR 法把经历润色得更出彩；投递时浏览器插件早已候在招聘页，点一下“一键匹配”，对应方向的简历自动填满整张表单，你只管检查、提交！从此投简历不再是体力活，而是一场有准备的精准出击！</p>
+          </div>
+        </article>
+
+        <!-- 作品 04 清理磁盘 -->
+        <article class="work-card reveal" data-delay="1">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.04</span>
+            <div class="carousel" data-carousel>
+              <span class="carousel-count"><span data-cur>1</span>/4</span>
+              <div class="carousel-track" data-track>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/5lj3B8Sq2V" alt="清理磁盘·栗子大师 封面插画"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/aDLoTfpzcU" alt="栗子大师 磁盘空间总览截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/1UkcGZKRen" alt="栗子大师 文件清单截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/idaqnU7EP0" alt="栗子大师 重复文件分组截图"></div>
+              </div>
+              <button class="carousel-btn prev" data-prev aria-label="上一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="carousel-btn next" data-next aria-label="下一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="carousel-dots" data-dots></div>
+            </div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-teal">系统工具</span>
+            </div>
+            <h3 class="work-title">清理磁盘 · 栗子大师</h3>
+            <p class="work-desc">电脑内存老是不够？文件太多不知道删哪个？还有一堆重复文件在悄悄占着空间？完全电脑小白？没关系，栗子大师帮到你！它会先扫描生成一张"磁盘地图"，让你一眼看清空间都去了哪；再把候选文件按分类、风险列成清单，勾选想清理的、点"移入废纸篓"并再次确认，才会执行删除。它永远不会自动删除你的文件——每一次删除，都由你确认拍板。</p>
+          </div>
+        </article>
+
+        <!-- 未完待续 -->
+        <article class="work-card reveal" data-delay="1">
+          <div class="work-cover tbc-cover">
+            <img class="tbc-img" src="https://aka.doubaocdn.com/s/oePiixKfDo" alt="To Be Continued 未完待续">
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag">Next</span>
+            </div>
+            <h3 class="work-title">未完待续</h3>
+            <p class="work-desc">更多作品正在路上，把每一个灵感都做成真正被用起来的东西。</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关于 ===== -->
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <p class="quote">拆问题，我喜欢用逻辑和数据；落地想法，我喜欢用 AI 和双手。</p>
+        </div>
+        <div class="reveal" data-delay="1">
+          <div class="about-skills">
+            <h4>蔡琳的关键词</h4>
+            <div class="skill-list">
+              <span>动手派创作者</span><span>灵感迸发源泉</span><span>问题拆解爱好者</span><span>用户痛点关怀者</span><span>AI Builder</span><span>金融背景</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap foot-inner">
+    <p>© 2026 蔡琳 · AI 作品集 · 用 AI 亲手搭建</p>
+    <nav aria-label="页脚导航">
+      <ul class="foot-links" style="list-style:none">
+        <li><a href="#top">回到顶部</a></li>
+        <li><a href="#works">作品</a></li>
+        <li><a href="#about">关于</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // 仅在 JS 可用时启用渐显动画（内容默认可见，不依赖脚本）
+  document.documentElement.classList.add('js');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // 相册轮播：箭头 / 圆点 / 触摸滑动
+  function initCarousel(root) {
+    const track = root.querySelector('[data-track]');
+    const slides = track.children;
+    const dotsWrap = root.querySelector('[data-dots]');
+    const curLabel = root.querySelector('[data-cur]');
+    let idx = 0;
+
+    for (let i = 0; i < slides.length; i++) {
+      const d = document.createElement('button');
+      d.setAttribute('aria-label', '查看第 ' + (i + 1) + ' 张');
+      d.addEventListener('click', () => { go(i); restartAuto(); });
+      dotsWrap.appendChild(d);
+    }
+    const dots = dotsWrap.children;
+
+    function go(i) {
+      idx = (i + slides.length) % slides.length;
+      for (let j = 0; j < slides.length; j++) slides[j].classList.toggle('active', j === idx);
+      for (const d of dots) d.classList.toggle('active', d === dots[idx]);
+      curLabel.textContent = idx + 1;
+    }
+
+    root.querySelector('[data-prev]').addEventListener('click', () => { go(idx - 1); restartAuto(); });
+    root.querySelector('[data-next]').addEventListener('click', () => { go(idx + 1); restartAuto(); });
+
+    let startX = 0, delta = 0, dragging = false;
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX; delta = 0; dragging = true;
+    }, { passive: true });
+    track.addEventListener('touchmove', (e) => {
+      if (dragging) delta = e.touches[0].clientX - startX;
+    }, { passive: true });
+    track.addEventListener('touchend', () => {
+      if (!dragging) return;
+      dragging = false;
+      if (delta < -50) go(idx + 1);
+      else if (delta > 50) go(idx - 1);
+      delta = 0;
+      restartAuto();
+    });
+
+    // 自动轮换：悬停暂停、交互后重新计时；尊重系统「减少动态」设置
+    let timer = null;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+    function startAuto() { stopAuto(); if (reduceMotion) return; timer = setInterval(() => go(idx + 1), 4000); }
+    function restartAuto() { stopAuto(); startAuto(); }
+    root.addEventListener('mouseenter', stopAuto);
+    root.addEventListener('mouseleave', () => { if (!reduceMotion) startAuto(); });
+
+    go(0);
+    startAuto();
+  }
+  document.querySelectorAll('[data-carousel]').forEach(initCarousel);
+
+</script>
+</body>
+</html>
