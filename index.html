@@ -180,6 +180,15 @@
   .tag.t-teal{color:var(--teal);border-color:var(--teal);background:var(--teal-soft)}
   .work-title{font-family:var(--serif);font-weight:700;font-size:24px;line-height:1.3}
   .work-desc{color:var(--graphite);font-size:14.5px;font-weight:300;margin-top:10px}
+  .work-link{
+    align-self:flex-start;margin-top:auto;
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13.5px;font-weight:600;color:var(--paper);
+    background:var(--ink);border:1px solid var(--ink);
+    padding:9px 18px;border-radius:999px;text-decoration:none;
+    transition:background .2s,color .2s,transform .2s;
+  }
+  .work-link:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
 
   /* ===== 关于 ===== */
   #about{padding:104px 0 0}
@@ -400,6 +409,7 @@
             </div>
             <h3 class="work-title">懂面鹅 · AI 面试解惑官</h3>
             <p class="work-desc">AI 面试前最让你心里没底的，是不是压根不知道对面那个 AI 面试官在想什么，它按什么标准打分？会不会看走眼？这种对算法的不透明感和失控感，才是焦虑真正的源头。没关系，你有懂面鹅，你的 AI 面试解惑官！它不只是模拟面试官评估你的回答，更是陪你把 AI 评估背后的逻辑一层层拆开看明白。它会从你最真实的担忧出发，用 AI 生成专属于你的黑箱议题，再带你一步步走完“猜测 → 辩论 → 实测 → 评分 → 拆解 → 改写 → 个性化定制反馈”的完整链路，让你在亲身体验里亲眼看见 AI 到底是怎么识别你的结构、行动、结果和表达信号的。当黑箱被点亮，焦虑落地，剩下的，是对这场 AI 面试的掌控感！</p>
+            <a class="work-link" href="https://dongmiane-ai-demo.netlify.app/" target="_blank" rel="noopener">在线体验 Demo ↗</a>
           </div>
         </article>
 
