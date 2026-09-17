@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蔡琳 · AI 作品集</title>
+<meta name="description" content="蔡琳的 AI 作品集——把想法做成能用的东西：懂面鹅、可比公司 Skill、简历库助手、清理磁盘。">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#F3EFE6;
+    --paper-2:#EBE5D7;
+    --ink:#1A1D21;
+    --graphite:#3A3F45;
+    --muted:#7C7666;
+    --accent:#E25C33;
+    --accent-soft:#F4DED2;
+    --teal:#2F6F6A;
+    --teal-soft:#D9E4E0;
+    --sand:#C9BFA8;
+    --line:rgba(26,29,33,.14);
+    --serif:"Noto Serif SC",Georgia,"Songti SC","SimSun",serif;
+    --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#fff}
+
+  /* ===== 通用容器 ===== */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-size:13px;letter-spacing:.24em;font-weight:500;color:var(--accent);
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--accent)}
+  .section-title{
+    font-family:var(--serif);font-weight:700;font-size:clamp(30px,4vw,44px);
+    line-height:1.2;letter-spacing:.01em;margin-top:18px;
+  }
+  .section-sub{color:var(--graphite);max-width:640px;margin-top:16px;font-size:16px;font-weight:300}
+
+  /* ===== 导航 ===== */
+  header.site-nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,239,230,.86);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .brand-mark{
+    width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);
+    display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:14px;
+    background:var(--paper-2);
+  }
+  .brand-name{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.02em}
+  .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
+  .nav-links a{
+    display:inline-flex;align-items:center;min-height:44px;padding:0 16px;
+    text-decoration:none;color:var(--graphite);font-size:14px;font-weight:500;
+    border-radius:8px;transition:color .2s,background .2s;
+  }
+  .nav-links a:hover{color:var(--ink);background:var(--paper-2)}
+  .nav-links a.cta{color:#fff;background:var(--ink)}
+  .nav-links a.cta:hover{background:var(--accent);color:#fff}
+
+  /* ===== Hero ===== */
+  .hero{padding:96px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .hero h1{
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(40px,6vw,72px);line-height:1.08;letter-spacing:.005em;
+  }
+  .hero h1 .hl{color:var(--accent)}
+  .hero p.lead{
+    color:var(--graphite);font-size:17px;font-weight:300;
+    max-width:520px;margin-top:26px;
+  }
+  .hero-stats{display:flex;gap:36px;margin-top:38px;flex-wrap:wrap}
+  .stat .num{font-family:var(--serif);font-weight:700;font-size:34px;line-height:1}
+  .stat .lbl{font-size:12px;letter-spacing:.14em;color:var(--muted);margin-top:8px;text-transform:uppercase}
+  .hero-cta{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    min-height:48px;padding:0 26px;border-radius:999px;
+    font-family:var(--sans);font-size:15px;font-weight:500;text-decoration:none;
+    border:1px solid var(--ink);cursor:pointer;transition:all .22s;
+  }
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--paper-2)}
+  .hero-art{position:relative}
+  .hero-art img{
+    width:100%;border-radius:22px;display:block;
+    border:1px solid var(--line);
+    box-shadow:0 30px 60px -30px rgba(26,29,33,.35);
+  }
+  .hero-art .cap{
+    position:absolute;left:18px;bottom:18px;
+    background:rgba(243,239,230,.92);backdrop-filter:blur(6px);
+    border:1px solid var(--line);border-radius:999px;
+    padding:8px 16px;font-size:12px;letter-spacing:.08em;color:var(--graphite);
+  }
+
+  /* ===== 作品区 ===== */
+  #works{padding:104px 0 24px}
+  .works-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:56px}
+  .work-card{
+    display:flex;flex-direction:column;
+    background:var(--paper-2);
+    border:1px solid var(--line);border-radius:20px;
+    overflow:hidden;position:relative;
+    transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s;
+  }
+  .work-card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(26,29,33,.4)}
+  .work-cover{position:relative;aspect-ratio:4/3;overflow:hidden}
+  .work-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+  .work-card:hover .work-cover img{transform:scale(1.045)}
+
+  /* ===== 相册轮播（懂面鹅，淡入淡出） ===== */
+  .carousel{position:relative;width:100%;height:100%}
+  .carousel-track{position:relative;height:100%}
+  .carousel-slide{
+    position:absolute;inset:0;display:grid;place-items:center;background:var(--paper-2);
+    opacity:0;pointer-events:none;transition:opacity .8s ease;
+  }
+  .carousel-slide.active{opacity:1;pointer-events:auto;z-index:1}
+  .carousel-slide img{width:100%;height:100%;object-fit:contain;display:block}
+  .work-card:hover .carousel-slide img{transform:none}
+  .carousel-btn{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--line);background:rgba(243,239,230,.9);
+    color:var(--ink);cursor:pointer;display:grid;place-items:center;
+    transition:background .2s,color .2s;
+  }
+  .carousel-btn:hover{background:var(--ink);color:var(--paper)}
+  .carousel-btn.prev{left:12px}
+  .carousel-btn.next{right:12px}
+  .carousel-btn svg{width:18px;height:18px}
+  .carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:6px}
+  .carousel-dots button{
+    width:8px;height:8px;border-radius:50%;border:none;padding:0;
+    background:rgba(26,29,33,.3);cursor:pointer;transition:all .25s;
+  }
+  .carousel-dots button.active{background:var(--accent);width:22px;border-radius:999px}
+  .carousel-count{
+    position:absolute;top:12px;right:12px;z-index:3;
+    font-size:11.5px;font-weight:500;color:var(--graphite);
+    background:rgba(243,239,230,.85);border:1px solid var(--line);
+    border-radius:999px;padding:3px 10px;letter-spacing:.05em;
+  }
+  .work-no{
+    position:absolute;top:16px;left:16px;z-index:2;
+    font-family:var(--serif);font-weight:700;font-size:15px;color:#fff;
+    background:var(--ink);border-radius:999px;padding:5px 14px;letter-spacing:.05em;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .work-no .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .work-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+  .work-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .tag{
+    font-size:12px;font-weight:500;letter-spacing:.04em;
+    padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--graphite);
+  }
+  .tag.t-accent{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+  .tag.t-teal{color:var(--teal);border-color:var(--teal);background:var(--teal-soft)}
+  .work-title{font-family:var(--serif);font-weight:700;font-size:24px;line-height:1.3}
+  .work-desc{color:var(--graphite);font-size:14.5px;font-weight:300;margin-top:10px}
+  .work-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;padding-top:20px;border-top:1px dashed var(--line)}
+  .work-metrics .m{text-align:left}
+  .work-metrics .m .v{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink)}
+  .work-metrics .m .k{font-size:11px;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+  .work-ft{display:flex;align-items:center;justify-content:space-between;margin-top:22px;gap:12px;flex-wrap:wrap}
+  .status{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--teal)}
+  .status .pulse{width:8px;height:8px;border-radius:50%;background:var(--teal);position:relative}
+  .work-link{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13.5px;font-weight:500;color:var(--ink);text-decoration:none;
+    border-bottom:1px solid var(--accent);padding-bottom:2px;
+  }
+  .work-link:hover{color:var(--accent)}
+  .work-link svg{width:15px;height:15px;transition:transform .2s}
+  .work-link:hover svg{transform:translate(3px,-1px)}
+
+  /* ===== 关于 ===== */
+  #about{padding:104px 0 0}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:48px}
+  .about-card{
+    background:var(--ink);color:var(--paper);
+    border-radius:20px;padding:40px 38px;
+  }
+  .about-card .quote{
+    font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.5;
+  }
+  .about-card .who{margin-top:20px;font-size:14px;opacity:.8}
+  .about-skills h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:16px}
+  .skill-list{display:flex;flex-wrap:wrap;gap:10px}
+  .skill-list span{
+    border:1px solid var(--line);border-radius:999px;
+    padding:8px 16px;font-size:13.5px;color:var(--graphite);background:var(--paper-2);
+  }
+  .about-note{color:var(--graphite);font-size:15px;font-weight:300;line-height:1.9;margin-top:20px}
+
+  /* ===== Footer ===== */
+  footer{border-top:1px solid var(--line);margin-top:100px}
+  .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:34px 0;flex-wrap:wrap}
+  .foot-inner p{font-size:13px;color:var(--muted)}
+  .foot-links{display:flex;gap:6px}
+  .foot-links a{
+    display:inline-flex;align-items:center;min-height:44px;padding:0 14px;
+    color:var(--graphite);text-decoration:none;font-size:13px;border-radius:8px;
+  }
+  .foot-links a:hover{color:var(--ink);background:var(--paper-2)}
+
+  /* ===== 批注编辑侧边栏 ===== */
+  .edit-fab{
+    position:fixed;right:22px;bottom:22px;z-index:60;
+    display:inline-flex;align-items:center;gap:8px;
+    min-height:48px;padding:0 20px;border-radius:999px;
+    border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+    font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;
+    box-shadow:0 12px 30px -12px rgba(26,29,33,.5);
+    transition:background .2s,transform .2s;
+  }
+  .edit-fab:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+  .edit-fab svg{width:16px;height:16px}
+
+  .sidebar-mask{
+    position:fixed;inset:0;background:rgba(26,29,33,.32);z-index:65;
+    opacity:0;pointer-events:none;transition:opacity .3s;
+  }
+  .sidebar-mask.show{opacity:1;pointer-events:auto}
+
+  .sidebar{
+    position:fixed;top:0;right:0;bottom:0;width:384px;max-width:92vw;z-index:70;
+    background:var(--paper);border-left:1px solid var(--line);
+    box-shadow:-24px 0 60px -30px rgba(26,29,33,.4);
+    transform:translateX(105%);transition:transform .35s cubic-bezier(.25,.8,.3,1);
+    display:flex;flex-direction:column;
+  }
+  .sidebar.open{transform:none}
+  .sidebar-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 22px;border-bottom:1px solid var(--line);gap:12px;
+  }
+  .sidebar-head h3{font-family:var(--serif);font-weight:700;font-size:18px;white-space:nowrap}
+  .sidebar-head .actions{display:flex;gap:8px}
+  .sidebar-btn{
+    display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 14px;
+    border:1px solid var(--line);border-radius:999px;background:transparent;
+    font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--graphite);
+    cursor:pointer;transition:all .2s;white-space:nowrap;
+  }
+  .sidebar-btn:hover{border-color:var(--ink);color:var(--ink)}
+  .sidebar-btn.danger:hover{border-color:var(--accent);color:var(--accent)}
+  .sidebar-body{flex:1;overflow-y:auto;padding:18px 22px 30px;-webkit-overflow-scrolling:touch}
+  .sidebar-note{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.7}
+  .side-group{border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;background:var(--paper-2)}
+  .side-group summary{
+    cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;
+    padding:12px 16px;font-weight:600;font-size:13.5px;color:var(--ink);
+  }
+  .side-group summary::-webkit-details-marker{display:none}
+  .side-group summary::after{content:"＋";font-size:15px;color:var(--muted);transition:transform .25s}
+  .side-group[open] summary::after{transform:rotate(45deg)}
+  .side-group .gf{padding:2px 16px 14px;display:flex;flex-direction:column;gap:12px}
+  .field label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px}
+  .field input,.field textarea{
+    width:100%;border:1px solid var(--line);border-radius:8px;background:var(--paper);
+    font-family:var(--sans);font-size:13.5px;color:var(--ink);padding:9px 11px;
+    transition:border-color .2s;
+  }
+  .field textarea{resize:vertical;min-height:76px;line-height:1.6}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+  .field .hint{font-size:11px;color:var(--muted);margin-top:4px}
+
+  /* ===== 入场动画（仅在 JS 可用时启用，内容默认可见） ===== */
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .js .reveal.in{opacity:1;transform:none}
+  .js .reveal[data-delay="1"]{transition-delay:.08s}
+  .js .reveal[data-delay="2"]{transition-delay:.16s}
+  .js .reveal[data-delay="3"]{transition-delay:.24s}
+  @media (prefers-reduced-motion:reduce){
+    .js .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .work-card:hover{transform:none}
+    .work-card:hover .work-cover img{transform:none}
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .hero{padding:64px 0 20px}
+    .works-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px}
+    .nav-links a{padding:0 10px}
+    .hero-stats{gap:24px}
+    .work-metrics{grid-template-columns:repeat(3,1fr);gap:6px}
+    .banner figcaption{padding:26px 20px 18px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <span class="brand-mark">CL</span>
+      <span class="brand-name">蔡琳 · AI 作品集</span>
+    </a>
+    <nav aria-label="主导航">
+      <ul class="nav-links">
+        <li><a href="#works">作品</a></li>
+        <li><a href="#about">关于</a></li>
+        <li><a class="cta" href="#works">看作品</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow" data-edit="hero_eyebrow">Portfolio · 2026</p>
+        <h1 style="margin-top:20px"><span data-edit="hero_t1">把想法做成</span><br><span class="hl" data-edit="hero_t2">能用的东西</span></h1>
+        <p class="lead" data-edit="hero_lead">
+          我是蔡琳 —— 金融背景的 AI 创作者。这里收录了我亲手做出、并且真正用起来的四件作品：
+          从 AI 产品、金融分析 Skill，到简历工具与系统清理应用。
+        </p>
+        <div class="hero-stats">
+          <div class="stat"><div class="num" data-edit="hs1v">4</div><div class="lbl" data-edit="hs1k">件作品</div></div>
+          <div class="stat"><div class="num" data-edit="hs2v">1</div><div class="lbl" data-edit="hs2k">已上线 Demo</div></div>
+          <div class="stat"><div class="num" data-edit="hs3v">2</div><div class="lbl" data-edit="hs3k">可直接使用</div></div>
+          <div class="stat"><div class="num" data-edit="hs4v">1</div><div class="lbl" data-edit="hs4k">可分发包</div></div>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#works">看看作品
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#about">关于我</a>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <img src="https://aka.doubaocdn.com/s/Eo8CUrsXgX" alt="AI 造物者工作台插画">
+        <span class="cap">我的 AI 工作台</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 作品区 ===== -->
+  <section id="works">
+    <div class="wrap">
+      <div class="works-head">
+        <div>
+          <p class="eyebrow" data-edit="works_eyebrow">Selected Works</p>
+          <h2 class="section-title" data-edit="works_title">四件亲手做出来的作品</h2>
+          <p class="section-sub" data-edit="works_sub">每一件都不是 demo 壳子——它们要么上线可访问，要么有完整测试与分发，全部真的被用了起来。</p>
+        </div>
+      </div>
+
+      <div class="works-grid">
+
+        <!-- 作品 01 懂面鹅 -->
+        <article class="work-card reveal">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.01</span>
+            <div class="carousel" data-carousel>
+              <span class="carousel-count"><span data-cur>1</span>/8</span>
+              <div class="carousel-track" data-track>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/XCJGYqbjrG" alt="懂面鹅 封面插画"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/KVBkSpuMUx" alt="懂面鹅 首页截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/BiASqVRVZp" alt="懂面鹅 黑箱拆解室截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/x9cNpytCZY" alt="懂面鹅 拆弹预测截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/ZUVMJhgVnG" alt="懂面鹅 AI 实测截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/vkyDadDmJ2" alt="懂面鹅 评分报告截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/2dLCvIOgLQ" alt="懂面鹅 爆破揭晓截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/s4609GzFdN" alt="懂面鹅 干货手册截图"></div>
+              </div>
+              <button class="carousel-btn prev" data-prev aria-label="上一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="carousel-btn next" data-next aria-label="下一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="carousel-dots" data-dots></div>
+            </div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-accent">AI 产品</span>
+              <span class="tag">交互体验</span>
+              <span class="tag">已上线</span>
+            </div>
+            <h3 class="work-title" data-edit="w1_title">懂面鹅 · AI 面试解惑官</h3>
+            <p class="work-desc" data-edit="w1_desc">面向 AI 面试主题辩论赛的互动产品——"拆穿 AI 面试那些不能说的秘密"。匿名收集候选人对 AI 面试的心声，实时生成词云上大屏；用五阶段互动游戏揭开算法黑箱，AI 实测三维度评分；沉淀成可分享的面试干货手册。</p>
+            <div class="work-metrics">
+              <div class="m"><div class="v" data-edit="w1_m1v">11</div><div class="k" data-edit="w1_m1k">条心里话</div></div>
+              <div class="m"><div class="v" data-edit="w1_m2v">20</div><div class="k" data-edit="w1_m2k">个关键词</div></div>
+              <div class="m"><div class="v" data-edit="w1_m3v">3</div><div class="k" data-edit="w1_m3k">大功能模块</div></div>
+            </div>
+            <div class="work-ft">
+              <span class="status"><span class="pulse"></span><span data-edit="w1_status">Demo 已上线</span></span>
+              <a class="work-link" href="https://dongmiane-ai-demo.netlify.app/" target="_blank" rel="noopener">
+                <span data-edit="w1_link">访问在线 Demo</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 作品 02 可比公司 Skill -->
+        <article class="work-card reveal" data-delay="1">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.02</span>
+            <img src="https://aka.doubaocdn.com/s/XEHtvTeVK3" alt="可比公司估值 Skill 封面插画">
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-teal">金融分析</span>
+              <span class="tag">AI Skill</span>
+              <span class="tag">Wind 数据</span>
+            </div>
+            <h3 class="work-title" data-edit="w2_title">可比公司 Skill · Wind 估值</h3>
+            <p class="work-desc" data-edit="w2_desc">以 Wind 为数据底座的可比公司估值 Skill：AI 自动筛选可比公司、按估值方法取数，跑通「校验 → 计算 → 渲染报告 → 生成 Excel」全链路，输出可直接复制到 PPT 的短报告与估值表。支持一级/二级市场与公司 List 批量分析。</p>
+            <div class="work-metrics">
+              <div class="m"><div class="v" data-edit="w2_m1v">8</div><div class="k" data-edit="w2_m1k">个脚本</div></div>
+              <div class="m"><div class="v" data-edit="w2_m2v">10</div><div class="k" data-edit="w2_m2k">个测试文件</div></div>
+              <div class="m"><div class="v" data-edit="w2_m3v">4</div><div class="k" data-edit="w2_m3k">类公司样本</div></div>
+            </div>
+            <div class="work-ft">
+              <span class="status"><span class="pulse"></span><span data-edit="w2_status">全链路可复用</span></span>
+              <a class="work-link" href="#about"><span data-edit="w2_link">数据合同 · 双门控流程</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 作品 03 简历库助手 -->
+        <article class="work-card reveal">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.03</span>
+            <img src="https://aka.doubaocdn.com/s/FRGWPs9g3n" alt="简历库助手封面插画">
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-accent">效率工具</span>
+              <span class="tag">浏览器扩展</span>
+              <span class="tag">v2.4</span>
+            </div>
+            <h3 class="work-title" data-edit="w3_title">简历库助手 · 多方向简历工作流</h3>
+            <p class="work-desc" data-edit="w3_desc">浏览器扩展 + 网页应用组成的简历工作流：解析 PDF / Word 简历成结构化库，卡片式管理多方向经历，AI 按 STAR 法生成描述；配合浏览器侧边栏，把多方向简历一键填入在线投递表单、下拉框智能匹配。</p>
+            <div class="work-metrics">
+              <div class="m"><div class="v" data-edit="w3_m1v">2</div><div class="k" data-edit="w3_m1k">端协同</div></div>
+              <div class="m"><div class="v" data-edit="w3_m2v">3</div><div class="k" data-edit="w3_m2k">个核心页面</div></div>
+              <div class="m"><div class="v" data-edit="w3_m3v">1</div><div class="k" data-edit="w3_m3k">键智能填入</div></div>
+            </div>
+            <div class="work-ft">
+              <span class="status"><span class="pulse"></span><span data-edit="w3_status">扩展 + 网页双端</span></span>
+              <a class="work-link" href="#about"><span data-edit="w3_link">简历解析 · AI 写作 · 模板导出</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 作品 04 清理磁盘 -->
+        <article class="work-card reveal" data-delay="1">
+          <div class="work-cover">
+            <span class="work-no"><span class="dot"></span>No.04</span>
+            <div class="carousel" data-carousel>
+              <span class="carousel-count"><span data-cur>1</span>/4</span>
+              <div class="carousel-track" data-track>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/5lj3B8Sq2V" alt="清理磁盘·栗子大师 封面插画"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/8YLEZyUUVZ" alt="栗子大师 磁盘空间总览截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/lW95owI4XI" alt="栗子大师 文件清单截图"></div>
+                <div class="carousel-slide"><img src="https://aka.doubaocdn.com/s/i35wF3nlJ7" alt="栗子大师 重复文件分组截图"></div>
+              </div>
+              <button class="carousel-btn prev" data-prev aria-label="上一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="carousel-btn next" data-next aria-label="下一张">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="carousel-dots" data-dots></div>
+            </div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="tag t-teal">系统工具</span>
+              <span class="tag">本地应用</span>
+              <span class="tag">可分发</span>
+            </div>
+            <h3 class="work-title" data-edit="w4_title">清理磁盘 · 栗子大师</h3>
+            <p class="work-desc" data-edit="w4_desc">电脑内存老是不够？文件太多不知道删哪个？还有一堆重复文件在悄悄占着空间？完全电脑小白？没关系，栗子大师帮到你！它会先扫描生成一张"磁盘地图"，让你一眼看清空间都去了哪；再把候选文件按分类、风险列成清单，勾选想清理的、点"移入废纸篓"并再次确认，才会执行删除。它永远不会自动删除你的文件——每一次删除，都由你确认拍板。</p>
+            <div class="work-metrics">
+              <div class="m"><div class="v" data-edit="w4_m1v">3</div><div class="k" data-edit="w4_m1k">档扫描模式</div></div>
+              <div class="m"><div class="v" data-edit="w4_m2v">6</div><div class="k" data-edit="w4_m2k">类文件识别</div></div>
+              <div class="m"><div class="v" data-edit="w4_m3v">1</div><div class="k" data-edit="w4_m3k">个可分发包</div></div>
+            </div>
+            <div class="work-ft">
+              <span class="status"><span class="pulse"></span><span data-edit="w4_status">人工确认才删除</span></span>
+              <a class="work-link" href="#about"><span data-edit="w4_link">磁盘地图 · 状态工作流</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关于 ===== -->
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow" data-edit="about_eyebrow">About</p>
+      <h2 class="section-title" data-edit="about_title">金融人做 AI 造物</h2>
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <p class="quote" data-edit="about_quote">"我学金融出身，喜欢用数据和逻辑拆问题；也喜欢把想法亲手做成能跑起来的东西。"</p>
+          <p class="who" data-edit="about_who">蔡琳 · 金融背景的 AI 创作者</p>
+        </div>
+        <div class="reveal" data-delay="1">
+          <div class="about-skills">
+            <h4 data-edit="about_skills_h">我常用的工具与语言</h4>
+            <div class="skill-list" data-edit="about_skills" data-edit-list>
+              <span>Python</span><span>SQL</span><span>Stata</span><span>金融建模</span>
+              <span>AI 应用构建</span><span>产品设计</span><span>交互原型</span><span>Wind / Choice</span>
+            </div>
+          </div>
+          <p class="about-note" data-edit="about_note">
+            这四件作品横跨 AI 产品体验、金融估值工程、效率工具与系统清理——它们有的已上线、有的能直接分发，
+            但每一件都不是停留在纸面的方案，而是真正被用起来的东西。我还在不断把新的想法做成新的作品。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap foot-inner">
+    <p data-edit="foot_text">© 2026 蔡琳 · AI 作品集 · 用 AI 亲手搭建</p>
+    <nav aria-label="页脚导航">
+      <ul class="foot-links" style="list-style:none">
+        <li><a href="#top">回到顶部</a></li>
+        <li><a href="#works">作品</a></li>
+        <li><a href="#about">关于</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<!-- ===== 批注编辑侧边栏 ===== -->
+<button class="edit-fab" id="editFab" aria-label="打开批注编辑">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+  批注编辑
+</button>
+<div class="sidebar-mask" id="sideMask"></div>
+<aside class="sidebar" id="editSidebar" aria-label="批注编辑面板">
+  <div class="sidebar-head">
+    <h3>批注编辑</h3>
+    <div class="actions">
+      <button class="sidebar-btn danger" id="editReset">恢复默认</button>
+      <button class="sidebar-btn" id="editClose">关闭</button>
+    </div>
+  </div>
+  <div class="sidebar-body">
+    <p class="sidebar-note">在下方修改文案，正文会实时同步更新，并自动保存在本机浏览器。技能标签请用「、」分隔。</p>
+    <div id="editForm"></div>
+  </div>
+</aside>
+
+<script>
+  // 仅在 JS 可用时启用渐显动画（内容默认可见，不依赖脚本）
+  document.documentElement.classList.add('js');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // 相册轮播：箭头 / 圆点 / 触摸滑动
+  function initCarousel(root) {
+    const track = root.querySelector('[data-track]');
+    const slides = track.children;
+    const dotsWrap = root.querySelector('[data-dots]');
+    const curLabel = root.querySelector('[data-cur]');
+    let idx = 0;
+
+    for (let i = 0; i < slides.length; i++) {
+      const d = document.createElement('button');
+      d.setAttribute('aria-label', '查看第 ' + (i + 1) + ' 张');
+      d.addEventListener('click', () => { go(i); restartAuto(); });
+      dotsWrap.appendChild(d);
+    }
+    const dots = dotsWrap.children;
+
+    function go(i) {
+      idx = (i + slides.length) % slides.length;
+      for (let j = 0; j < slides.length; j++) slides[j].classList.toggle('active', j === idx);
+      for (const d of dots) d.classList.toggle('active', d === dots[idx]);
+      curLabel.textContent = idx + 1;
+    }
+
+    root.querySelector('[data-prev]').addEventListener('click', () => { go(idx - 1); restartAuto(); });
+    root.querySelector('[data-next]').addEventListener('click', () => { go(idx + 1); restartAuto(); });
+
+    let startX = 0, delta = 0, dragging = false;
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX; delta = 0; dragging = true;
+    }, { passive: true });
+    track.addEventListener('touchmove', (e) => {
+      if (dragging) delta = e.touches[0].clientX - startX;
+    }, { passive: true });
+    track.addEventListener('touchend', () => {
+      if (!dragging) return;
+      dragging = false;
+      if (delta < -50) go(idx + 1);
+      else if (delta > 50) go(idx - 1);
+      delta = 0;
+      restartAuto();
+    });
+
+    // 自动轮换：悬停暂停、交互后重新计时；尊重系统「减少动态」设置
+    let timer = null;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+    function startAuto() { stopAuto(); if (reduceMotion) return; timer = setInterval(() => go(idx + 1), 4000); }
+    function restartAuto() { stopAuto(); startAuto(); }
+    root.addEventListener('mouseenter', stopAuto);
+    root.addEventListener('mouseleave', () => { if (!reduceMotion) startAuto(); });
+
+    go(0);
+    startAuto();
+  }
+  document.querySelectorAll('[data-carousel]').forEach(initCarousel);
+
+  // ===== 批注编辑侧边栏：实时同步 + 本地保存 =====
+  (function () {
+    const STORE_KEY = 'portfolio_edits_v1';
+    const editForm = document.getElementById('editForm');
+    const els = {};
+    document.querySelectorAll('[data-edit]').forEach((el) => {
+      els[el.getAttribute('data-edit')] = el;
+    });
+
+    const FIELDS = [
+      { g: '开篇 Hero', open: true, f: [
+        { k: 'hero_eyebrow', l: '眉标', t: 'text' },
+        { k: 'hero_t1', l: '主标题 · 第一行', t: 'text' },
+        { k: 'hero_t2', l: '主标题 · 第二行（强调色）', t: 'text' },
+        { k: 'hero_lead', l: '副标题', t: 'area' },
+        { k: 'hs1v', l: '统计 1 · 数字', t: 'text' }, { k: 'hs1k', l: '统计 1 · 标签', t: 'text' },
+        { k: 'hs2v', l: '统计 2 · 数字', t: 'text' }, { k: 'hs2k', l: '统计 2 · 标签', t: 'text' },
+        { k: 'hs3v', l: '统计 3 · 数字', t: 'text' }, { k: 'hs3k', l: '统计 3 · 标签', t: 'text' },
+        { k: 'hs4v', l: '统计 4 · 数字', t: 'text' }, { k: 'hs4k', l: '统计 4 · 标签', t: 'text' }
+      ]},
+      { g: '作品区标题', open: false, f: [
+        { k: 'works_eyebrow', l: '眉标', t: 'text' },
+        { k: 'works_title', l: '大标题', t: 'text' },
+        { k: 'works_sub', l: '副标题', t: 'area' }
+      ]},
+      { g: '作品 01 · 懂面鹅', open: false, f: [
+        { k: 'w1_title', l: '作品名', t: 'text' },
+        { k: 'w1_desc', l: '介绍', t: 'area' },
+        { k: 'w1_m1v', l: '指标 1 · 数字', t: 'text' }, { k: 'w1_m1k', l: '指标 1 · 说明', t: 'text' },
+        { k: 'w1_m2v', l: '指标 2 · 数字', t: 'text' }, { k: 'w1_m2k', l: '指标 2 · 说明', t: 'text' },
+        { k: 'w1_m3v', l: '指标 3 · 数字', t: 'text' }, { k: 'w1_m3k', l: '指标 3 · 说明', t: 'text' },
+        { k: 'w1_status', l: '状态章', t: 'text' },
+        { k: 'w1_link', l: '链接文字', t: 'text' }
+      ]},
+      { g: '作品 02 · 可比公司 Skill', open: false, f: [
+        { k: 'w2_title', l: '作品名', t: 'text' },
+        { k: 'w2_desc', l: '介绍', t: 'area' },
+        { k: 'w2_m1v', l: '指标 1 · 数字', t: 'text' }, { k: 'w2_m1k', l: '指标 1 · 说明', t: 'text' },
+        { k: 'w2_m2v', l: '指标 2 · 数字', t: 'text' }, { k: 'w2_m2k', l: '指标 2 · 说明', t: 'text' },
+        { k: 'w2_m3v', l: '指标 3 · 数字', t: 'text' }, { k: 'w2_m3k', l: '指标 3 · 说明', t: 'text' },
+        { k: 'w2_status', l: '状态章', t: 'text' },
+        { k: 'w2_link', l: '链接文字', t: 'text' }
+      ]},
+      { g: '作品 03 · 简历库助手', open: false, f: [
+        { k: 'w3_title', l: '作品名', t: 'text' },
+        { k: 'w3_desc', l: '介绍', t: 'area' },
+        { k: 'w3_m1v', l: '指标 1 · 数字', t: 'text' }, { k: 'w3_m1k', l: '指标 1 · 说明', t: 'text' },
+        { k: 'w3_m2v', l: '指标 2 · 数字', t: 'text' }, { k: 'w3_m2k', l: '指标 2 · 说明', t: 'text' },
+        { k: 'w3_m3v', l: '指标 3 · 数字', t: 'text' }, { k: 'w3_m3k', l: '指标 3 · 说明', t: 'text' },
+        { k: 'w3_status', l: '状态章', t: 'text' },
+        { k: 'w3_link', l: '链接文字', t: 'text' }
+      ]},
+      { g: '作品 04 · 清理磁盘', open: false, f: [
+        { k: 'w4_title', l: '作品名', t: 'text' },
+        { k: 'w4_desc', l: '介绍', t: 'area' },
+        { k: 'w4_m1v', l: '指标 1 · 数字', t: 'text' }, { k: 'w4_m1k', l: '指标 1 · 说明', t: 'text' },
+        { k: 'w4_m2v', l: '指标 2 · 数字', t: 'text' }, { k: 'w4_m2k', l: '指标 2 · 说明', t: 'text' },
+        { k: 'w4_m3v', l: '指标 3 · 数字', t: 'text' }, { k: 'w4_m3k', l: '指标 3 · 说明', t: 'text' },
+        { k: 'w4_status', l: '状态章', t: 'text' },
+        { k: 'w4_link', l: '链接文字', t: 'text' }
+      ]},
+      { g: '关于 & 页脚', open: false, f: [
+        { k: 'about_eyebrow', l: '眉标', t: 'text' },
+        { k: 'about_title', l: '大标题', t: 'text' },
+        { k: 'about_quote', l: '引言', t: 'area' },
+        { k: 'about_who', l: '署名', t: 'text' },
+        { k: 'about_skills_h', l: '技能小标题', t: 'text' },
+        { k: 'about_skills', l: '技能标签（用「、」分隔）', t: 'area' },
+        { k: 'about_note', l: '结尾段', t: 'area' },
+        { k: 'foot_text', l: '页脚文字', t: 'text' }
+      ]}
+    ];
+
+    function getVal(el) {
+      if (el.hasAttribute('data-edit-list')) {
+        return Array.from(el.querySelectorAll('span')).map((s) => s.textContent.trim()).join('、');
+      }
+      return el.textContent.trim();
+    }
+    function setVal(el, v) {
+      if (el.hasAttribute('data-edit-list')) {
+        el.textContent = '';
+        String(v).split(/[、,，\n]+/).map((s) => s.trim()).filter(Boolean)
+          .forEach((s) => { const sp = document.createElement('span'); sp.textContent = s; el.appendChild(sp); });
+      } else {
+        el.textContent = v;
+      }
+    }
+
+    // 记录出厂默认
+    const defaults = {};
+    Object.keys(els).forEach((k) => { defaults[k] = getVal(els[k]); });
+
+    // 应用已保存的修改
+    let edits = {};
+    try { edits = JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch (e) { edits = {}; }
+    Object.keys(edits).forEach((k) => { if (els[k]) setVal(els[k], edits[k]); });
+
+    // 渲染表单
+    FIELDS.forEach((group) => {
+      const det = document.createElement('details');
+      det.className = 'side-group';
+      if (group.open) det.open = true;
+      const sum = document.createElement('summary');
+      sum.textContent = group.g;
+      det.appendChild(sum);
+      const wrap = document.createElement('div');
+      wrap.className = 'gf';
+      group.f.forEach((fd) => {
+        const box = document.createElement('div');
+        box.className = 'field';
+        const lab = document.createElement('label');
+        lab.textContent = fd.l;
+        lab.htmlFor = 'ef_' + fd.k;
+        const ctrl = document.createElement(fd.t === 'area' ? 'textarea' : 'input');
+        ctrl.id = 'ef_' + fd.k;
+        ctrl.dataset.k = fd.k;
+        ctrl.value = (edits[fd.k] !== undefined ? edits[fd.k] : defaults[fd.k]) || '';
+        ctrl.addEventListener('input', () => {
+          const v = ctrl.value;
+          if (els[fd.k]) setVal(els[fd.k], v);
+          edits[fd.k] = v;
+          try { localStorage.setItem(STORE_KEY, JSON.stringify(edits)); } catch (e) {}
+        });
+        box.appendChild(lab);
+        box.appendChild(ctrl);
+        wrap.appendChild(box);
+      });
+      det.appendChild(wrap);
+      editForm.appendChild(det);
+    });
+
+    // 打开 / 关闭
+    const fab = document.getElementById('editFab');
+    const sidebar = document.getElementById('editSidebar');
+    const mask = document.getElementById('sideMask');
+    const closeBtn = document.getElementById('editClose');
+    function openPanel() { sidebar.classList.add('open'); mask.classList.add('show'); }
+    function closePanel() { sidebar.classList.remove('open'); mask.classList.remove('show'); }
+    fab.addEventListener('click', openPanel);
+    closeBtn.addEventListener('click', closePanel);
+    mask.addEventListener('click', closePanel);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+
+    // 恢复默认
+    document.getElementById('editReset').addEventListener('click', () => {
+      if (!window.confirm('确定恢复所有文案为初始默认吗？')) return;
+      edits = {};
+      try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+      Object.keys(defaults).forEach((k) => { if (els[k]) setVal(els[k], defaults[k]); });
+      document.querySelectorAll('#editForm [data-k]').forEach((inp) => {
+        inp.value = defaults[inp.dataset.k] || '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>
